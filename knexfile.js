@@ -3,11 +3,14 @@
 module.exports = {
 
   development: {
-    client: 'mySQL',
+    client: 'mysql',
     useNullAsDefault: true,
     connection: {
-      filename: './dev.mySQL'
-    }
+      filename: './dev.mysql'
+    },
+    migrations: {
+      directory: './database/migrations',
+    },
   },
 
   staging: {
