@@ -1,22 +1,16 @@
 const router = require('express').Router();
-const db = require('../database/dbConfig.js');
+const db = require('./model');
 
 //GET
 router.get('/', (req, res)=> {
-    db
-    .select('*')
-    .from('')
+    db.getData()
     .then(data=> {
         res.status(200).json(data)
-    });
+    })
+    .catch(err=> {
+        console.log('Error: ', err)
+        res.status(500).json({Error: 'Problem getting data.'});
+    })
 });
 
-router.get('/commodities', (req, res)=> {
-    db
-    .select('*')
-    .where()
-    .from('')
-    .then(data=> {
-        res.status(200).json(data)
-    });
-});
+module.exports = router;

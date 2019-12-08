@@ -1,5 +1,6 @@
+require('dotenv').config();
 const express = require('express');
-const dataRouter = require('../api/server-router.js');
+const dataRouter = require('./api/server-router.js');
 
 
 const server = express();
@@ -9,6 +10,6 @@ server.get('/', (req, res)=> {
     res.send('Connected to Server')
 })
 
-server.use('/data', dataRouter)
+server.use('/api/data', dataRouter)
 
 module.exports = server;
