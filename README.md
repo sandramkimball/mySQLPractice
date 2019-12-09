@@ -1,3 +1,3 @@
-# mySQLPractice
+# QL Practice
 
-This is a practice doc for learning mySQL.
+This is a practice doc for implementing mySQL, and then converting it to GraphQL.
