@@ -1,67 +1,92 @@
 require('dotenv').config();
 const express = require('express');
+const server = express();
 const dataRouter = require('./api/server-router.js');
+const data = require('./api/model.js');
 const express_graphql = require('express-graphql');
 const {buildSchema} = require('graphql');
+// const cors = require('cors');
 
-
-//GraphQL Schema
+//Define GraphQL Schema: declare query types (and resolvers).
 const schema = buildSchema(`
     type Query {
-        course(id:Int!): Course
-        courses(topic: String): [Course]
+        tradersData(request_value: String): [SautiTrader]
+        tradersUsers(gender: String, age: String): [User]
     }
-
-    type Course {
+    type Mutation {
+        updateSautiTrader(): [SautiTrader]
+    }
+    type SautiTrader {
+        sess_id: Int
+        cell_num: String
+        created_date: String
+        update: String
+        platform_id: String
+        request_value: String
+        request_type: String
+    }
+    type User {
         id: Int
-        title: String
-        author: String
-        description: String
-        topic: String
-        url: String
+        gender: String
+        age: String
+        education: String
+        crossing_freq: String
+        produce: String
+        language: String
+        country_of_residence: String
     }
 `);
 
-var coursesData =[
-    {
-        id: 1,
-        title: 'String',
-        author: 'String',
-        description: 'String',
-        topic: 'String',
-        url: 'String',   
-    },
-    {
-        id: 2,
-        title: 'String',
-        author: 'String',
-        description: 'String',
-        topic: 'String',
-        url: 'String',   
-    }
-]
 
 
-var getCourse = function(args){
-    var id = args.id;
-    return coursesData.filter(course=> {
-        return course.id === id;
-    })[0];
+//Functions
+var getLanceData = async args => {
+    const lanceData = await data.getData();
+    
+    if (args.request_value) {
+        const {request_value} = args;
+        return lanceData.filter(trader=> trader.request_valie === request_value)
+    } else return lanceData;
 };
 
-var getCourses = function(args){
-    if (args.topic){
-        var topic = args.topic;
-        return coursesData.filter(course => course.topic === topic)
-    } else {
-        return coursesData;
+var getTradersUsers = async args => {
+    let filtered = [];
+    const traderUsers = await data.getUsers()
+
+    if (args.gender){
+        const {gender} = args;
+        filtered = traderUsers.filter(trader=> trader.gender === gender)
+    } 
+
+    if (args.age) {
+        const {age} = args;
+        filtered = traderUsers.filter(trader=>trader.age === age)
     }
+    return filtered;
 };
 
-//Root Resolver (declare required functions)
+var getTradersData = async args => {
+    let filtered = [];
+    const traderData = await data.getTraders()
+    if (sess_id){
+        const {sess_id} = args;
+        filtered = traderData.filter(data=> data.sess_id === sess_id)
+    }
+    if (cell_num){
+        const {cell_num} = args;
+        filtered = traderData.filter(data=> data.cell_num === cell_num)
+    }
+    return filtered
+};
+
+
+
+//Root Resolver (decalre and assign required functions)
 var root = {
-    course: getCourse, 
-    courses: getCourses
+    tradersData: getLanceData, 
+    tradersUsers: getTradersUsers,
+    tradersData: getTradersData,
+    updateTradersUsers: updateTradersUsers
 }
 
 //Create Express server and GraphQL endpoint
@@ -73,4 +98,5 @@ server.use('/graphql', express_graphql({
     graphiql: true
 }));
 
+server.use('/api/data', dataRouter)
 module.exports = server;
