@@ -4,8 +4,14 @@ const {buildSchema} = require('graphql');
 const schema = buildSchema(`
     type Query {
         tradersData(request_value: String): [SautiTrader]
-        tradersUsers(gender: String, age: String): [User]
+        tradersUsers(
+            gender: String, 
+            age: String, 
+            education: String, 
+            produce: String
+        ): [User]
     }
+    
     type SautiTrader {
         sess_id: Int
         cell_num: String

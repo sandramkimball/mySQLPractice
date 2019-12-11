@@ -12,20 +12,12 @@ var getLanceData = async args => {
 var getTradersUsers = async args => {
     const traderUsers = await data.getUsers()
     let filtered = traderUsers;
-    
-    var argsArray = Array.prototype.slice.call(arguments)
-    
-    if(!args.length){
-        return filtered;
-    }
 
-    if(argsArray){
-        argsArray.forEach(argument => {
-            filtered = filtered.filter(trader => trader[`${argument}`] === argument);
-    })
+   for (let arg in args){
+       filtered = filtered.filter(trader=>trader[arg] === args[arg])
+   }
 
     return filtered;
-    }
 };
 
 module.export = {getLanceData, getTradersUsers};
