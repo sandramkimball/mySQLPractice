@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const server = express();
-const dataRouter = require('./api/server-router.js');
+const dataRouter = require('./api/router.js');
 const data = require('./api/model.js');
 const express_graphql = require('express-graphql');
 const {buildSchema} = require('graphql');
@@ -90,9 +90,8 @@ var root = {
 }
 
 //Create Express server and GraphQL endpoint
-const server = express();
 server.use('/graphql', express_graphql({
-//param with configuration obj
+//params with configuration obj
     schema: schema,
     rootValue: root,
     graphiql: true
