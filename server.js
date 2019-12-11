@@ -2,11 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const server = express();
 const schema = require('./schema');
-
 const graphQLHTTP= require('express-graphql');
-
-const data = require('./api/model.js');
-const cors = require('cors');
+const {getLanceData, getTradersUsers} = require ('./requests.js')
 
 //Roots
 const root = {

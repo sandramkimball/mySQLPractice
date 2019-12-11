@@ -1,4 +1,4 @@
-const {getLanceData, getTradersUsers} = require('./requests');
+// const {getLanceData, getTradersUsers} = require('./requests');
 
 //Root Resolver (decalre and assign required functions)
 // const root = {
@@ -7,4 +7,4 @@ const {getLanceData, getTradersUsers} = require('./requests');
 // }
 
 
-module.export = root;
+// module.export = root;

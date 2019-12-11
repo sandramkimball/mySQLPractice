@@ -8,13 +8,8 @@ const getData = () => {
 }
 
 const getUsers = () => {
-    return db('users')
-}
-
-const getTraderUsers = () => {
-    return db('traders')
+    return db('users').whereNotNull('args')
 }
 
 
-
-module.exports = {getData, getUsers, getTraderUsers};
+module.exports = {getData, getUsers};

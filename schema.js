@@ -3,16 +3,10 @@ const {buildSchema} = require('graphql');
 //Define GraphQL Schema: declare query types (and resolvers).
 const schema = buildSchema(`
     type Query {
-        //This is the root object:
         tradersData(request_value: String): [SautiTrader]
         tradersUsers(gender: String, age: String): [User]
     }
-    type Mutation {
-        updateSautiTrader(): [SautiTrader]
-    }
-    //(this is a table?)
     type SautiTrader {
-        //(these are columns)
         sess_id: Int
         cell_num: String
         created_date: String
