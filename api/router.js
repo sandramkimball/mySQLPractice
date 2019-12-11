@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const db = require('./model');
-// const knex = require('./model')
+// const db = require('./model');
+const knex = require('./model')
 
 //GET
 router.get('/', (req, res)=> {
-    db.getData()
+    knex.getData()
     .then(data=> {
         res.status(200).json(data)
     })
