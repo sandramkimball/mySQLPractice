@@ -11,6 +11,3 @@ ReactDOM.render(
     </ApolloProvider>, document.getElementById('root')
 );
 
-
-{/* <App />, document.getElementById('root'));
-serviceWorker.unregister(); */}

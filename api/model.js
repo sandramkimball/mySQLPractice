@@ -11,10 +11,10 @@ const getUsers = () => {
     return db('users')
 }
 
-const getTraders = () => {
+const getTraderUsers = () => {
     return db('traders')
 }
 
 
 
-module.exports = {getData, getUsers, getTraders};
+module.exports = {getData, getUsers, getTraderUsers};

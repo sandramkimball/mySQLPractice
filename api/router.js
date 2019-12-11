@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const db = require('./model');
 const knex = require('./model')
 
 //GET

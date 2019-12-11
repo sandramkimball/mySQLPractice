@@ -2,7 +2,6 @@ import React, {Fragnment} from 'react';
 //Fragments^^ groups list of child without adding extra nodes to DOM
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-
 import {UserTile} from '../components';
 
 //wrapping in gql function to parse it into an AST
