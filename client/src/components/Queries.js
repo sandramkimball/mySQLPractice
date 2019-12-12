@@ -2,7 +2,7 @@ import React, {Fragnment} from 'react';
 //Fragments groups list of child w/out adding extra nodes to DOM. same as useQuery?
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import {Traders} from './Traders';
+import {Chart} from './Chart';
 
 //wrapping in gql function to parse it into an AST
 const TRADERS_QUERY = gql`
@@ -25,7 +25,6 @@ class Queries extends React.Component(){
         }
     };
 
-
     render(){
         return(
             <useQuery query={TRADERS_QUERY}>
@@ -34,7 +33,7 @@ class Queries extends React.Component(){
                         if(loading) return <h2>Loading...</h2>
                         if(error) console.log(error)
                         console.log(data)
-                        return <Traders data={data.tradersData}/>
+                        return <Chart data={data.tradersData}/>
                     }
                 }
             </useQuery>

@@ -32,7 +32,7 @@ class Chart extends React.Component {
         return(
             <div className="Chart">
                 <h2>{this.props.arg}</h2>
-                <ResonsiveBar
+                <ResponsiveBar
                     data={this.state.data}
                     keys={this.state.keys}
                     indexBy={`${arts}`}
