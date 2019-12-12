@@ -1,46 +1,28 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {ResponsiveBar} from '@nivo/bar';
-import axios from 'axios';
 import theme from '../Constants/Theme.js';
-import Queries from './Queries';
 
-function Chart({tradersUsers: {age, gender, education, crossing_frequency, primary_income}}) {
-
+function Chart(chartData) {
+    // {age, gender, education, crossing_frequency, primary_income}
+    
     return(
         <div>
-            <h5>Testing Chart.js (maybe switch this with CartData.js?)</h5>
+            <h5>Testing Chart.js</h5>
             <div>
                 <p>Trader: </p>
-                <p>{age}</p>
-                <p>{gender}</p>
-                <p>{education}</p>
+                <p>{chartData.age}</p>
             </div>
-        </div>
-    )
 
-
-    // componentDidMount(){
-    //     this.props.getDropDownDefault(this.props.pathname);
-
-    //     axios
-    //     .get(`${process.env.REACT_APP_BACKEND_URL}`)
-    //     .then(res=> {
-    //         console.log('Response returned!');
-    //         // res.traders.map(age=>)
-    //     })
-    // };
-
-    return(
         <div className="Chart">           
-            <h2>{this.props.arg}</h2>
+            <h4>Title: this.state.args</h4>
             <ResponsiveBar
-                data={this.state.data}
-                keys={this.state.keys}
-                indexBy={`${this.state.args}`}
+                // data={this.state.data}
+                // keys={this.state.keys}
+                // indexBy={`${this.state.args}`}
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}
                 groupMode="stacked"
-                colors={{ scheme: this.state.color }}
+                // colors={{ scheme: this.state.color }}
                 labelSkipHeight={0}
                 labelSkipWidth={0}
                 labelFormat={d => <tspan y={-15}>{d}% </tspan>}
@@ -98,8 +80,10 @@ function Chart({tradersUsers: {age, gender, education, crossing_frequency, prima
                 motionStiffness={90}
                 motionDamping={15}
             />
+        </div> 
+    
         </div>
     )
-    
 }
+
 export default Chart;
