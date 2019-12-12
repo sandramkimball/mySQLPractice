@@ -1,32 +1,44 @@
-import React, {Fragnment} from 'react';
-//Fragments^^ groups list of child without adding extra nodes to DOM
+//Here we define the actual queries that will fetch specified data we want.
+import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import {UserTile} from '../components';
+import gql from 'graphql-tag'; //used to create actual queries.
+import Chart from './Chart';
 
-//wrapping in gql function to parse it into an AST
-const GET_USERS = gql`
-    query users($after: String){
-        users(after: $after){}
+//Wrap in gql function to parse
+const TRADERS_QUERY = gql`
+    query traderUsers($after: String){
+        User(after: $after){
+            age
+            gender
+            education
+            crossing_frequency
+            primary_income
+            produce
+            country_of_residence
+            language
         }
+    }
 `;
 
-export default function Users(){
-    const {data, loading, error} = useQuery(GET_USERS);
-    if(loading) return <Loading/>;
-    if(error) return <p>Error</p>;
+function Queries(){
+    const {loading, error, data} = useQuery(TRADERS_QUERY);
 
+    if(loading) return <h2>Loading...</h2>
+    if(error) console.log('YO QUERY DATA FAILED: ', error)
+    if(data) console.log('YO QUERY DATA TRUE!', data)
+        
     return(
-        <Fragment>
-            <Header/>
-            {data.users &&
-            data.users.usrs &&
-            data.users.users.map(user=> (
-                <UserTile
-                    key={user.id}
-                    user={user}
-                />
+        <div>
+            <p>Queries.js TradersUsers Mapping Below:</p>
+            {data.tradersUsers.tradersUsers.map(trader=> (
+                <div>
+                    <Chart key={trader.id} props={data.tradersUsers} />
+                </div>
             ))}
-        </Fragment>
-    );
+        </div>
+    )     
 };
+
+
+
+export default Queries;

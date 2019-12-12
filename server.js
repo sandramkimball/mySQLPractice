@@ -4,7 +4,6 @@ const server = express();
 const graphQLHTTP= require('express-graphql');
 const cors = require('cors');
 const dataRouter = require('./model_data/router.js');
-
 const schema = require('./schema');
 const {getLanceData, getTradersUsers} = require ('./requests.js');
 
@@ -14,9 +13,9 @@ const root = {
     tradersUsers: getTradersUsers,
 }
 
-server.use('/api/data', dataRouter)
-server.use(express.json())
 server.use(cors());
+server.use(express.json())
+server.use('/api/data', dataRouter)
 
 //Express server with GraphQL Endpoint
 server.use('/graphql', graphQLHTTP({
@@ -24,6 +23,7 @@ server.use('/graphql', graphQLHTTP({
     rootValue: root,
     graphiql: true
 }));
+
 
 server.listen(4000)
 console.log('Port 4000 is Listening...')
