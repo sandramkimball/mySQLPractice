@@ -3,7 +3,7 @@ const express = require('express');
 const server = express();
 const graphQLHTTP= require('express-graphql');
 const cors = require('cors');
-const dataRouter = require('./api/router.js');
+const dataRouter = require('./model_data/router.js');
 
 const schema = require('./schema');
 const {getLanceData, getTradersUsers} = require ('./requests.js');

@@ -1,4 +1,4 @@
-const data = require ('./api/model.js');
+const data = require ('./model_data/model.js');
 
 //Functions
 var getLanceData = async args => {
