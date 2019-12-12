@@ -1,28 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {ResponsiveBar} from '@nivo/bar';
 import theme from '../Constants/Theme.js';
 
-function Chart(tradersData) {
-    // {age, gender, education, crossing_frequency, primary_income}
-    
-    return(
-        <div>
-            <h5>Testing Chart.js</h5>
-            <div>
-                <p>Trader: </p>
-                <p>id: {tradersData.id}</p>
-            </div>
+function Chart({props}) {
+    console.log('PROPS INCOMING!', props.data)
+    const [genderNum, setGenderNum] = useState();
 
-        <div className="Chart">           
-            <h4>Title: this.state.args</h4>
+    useEffect(()=> {
+        console.log('Hey hey hey')
+    }, [])
+
+    return(
+        <div className = 'DataChart'>
+            <h5>Testing Chart.js</h5>
+            <div className="Chart">        
             <ResponsiveBar
-                // data={this.state.data}
-                // keys={this.state.keys}
-                // indexBy={`${this.state.args}`}
+                data={props.data}
+                keys={'age'
+                // 'gender','education', 'crossing_frequency', 'primary_income', 'produce', 'country_of_residence'
+                }
+                indexBy='id'
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}
                 groupMode="stacked"
-                // colors={{ scheme: this.state.color }}
+                // colors={{scheme: nivo}}
                 labelSkipHeight={0}
                 labelSkipWidth={0}
                 labelFormat={d => <tspan y={-15}>{d}% </tspan>}
@@ -80,9 +81,8 @@ function Chart(tradersData) {
                 motionStiffness={90}
                 motionDamping={15}
             />
-        </div> 
-    
-        </div>
+        </div>     
+    </div>
     )
 }
 
