@@ -10,7 +10,7 @@ function Chart(tradersData) {
             <h5>Testing Chart.js</h5>
             <div>
                 <p>Trader: </p>
-                <p>{tradersData.age}</p>
+                <p>id: {tradersData.id}</p>
             </div>
 
         <div className="Chart">           
