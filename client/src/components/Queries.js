@@ -4,7 +4,8 @@ import React, {useEffect, useState} from 'react';
 import {Query} from 'react-apollo';//wrapping component
 import gql from 'graphql-tag';//used to create actual queries.
 import axios from 'axios';
-import Chart from './Chart';
+// import Chart from './Chart';
+require('dotenv').config();
 
 //Wrap in gql function to parse into AST
 const TRADERS_QUERY = gql`
@@ -19,48 +20,47 @@ const TRADERS_QUERY = gql`
     }
 `;
 
-        this.props.getDropDownDefault(this.props.pathname);
-
-
 function Queries(){
-    const [chartData, setChartData] = useState([])
+    const [tradersData, setTradersData] = useState([])
     
-        useEffect(()=> {
-            axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}`)
+    useEffect(()=> {
+        axios
+        // .get(`${process.env.REACT_APP_BACKEND_URL}`)
+        .get(`http://localhost:4000/api/data`)
         .then(res=> {
-            console.log('Response returned!');
-            setChartData(res);
-            })
-        }, [])
-
-        // axios
-        //     // For development: ${process.env.REACT_APP_BACKEND_URL}/sessions/products/1
-        //     .get(`https://sa-stage.herokuapp.com/sessions/lance/all`)
-        //     .then(res => {
-        //       // Log to see the response from server: console.log(res.data);
-        //       this.setState({
-        //         ...this.state,
-        //         realData: res.data
-        //       });
-        //     });
-    //   }
+            console.log('Response returned!', res);
+            setTradersData(res.data);
+            console.log('Did tradersData set?', tradersData)
+        })
+        .catch(err=>{
+            console.log('Error getting data: ', err)
+        })
+    }, [tradersData])
         
-        return(
-            <div>
-                <p>Launching from Queries.js:</p>
-                {/* set query below to above defined query */}
-                <Query query={TRADERS_QUERY}>
-                    {({loading, error, data}) => {
-                            if(loading) return <h2>Loading...</h2>
-                            if(error) console.log(error)
-                            console.log(data)
-                            return <h1>Test</h1>
-                    }}
-                </Query>
-                <Chart chartData={chartData}/>
-            </div>
-        )     
+    return(
+        <div>
+            {/* set query below to above defined query */}
+            <Query query={TRADERS_QUERY}>
+                {({loading, error, data}) => {
+                    if(loading) return <h2>Loading...</h2>
+                    if(error) console.log(error)
+                    if(data) console.log('Data in Queries.js', data)
+
+                    return(
+                        <div>
+                            <p>This should be the Chart</p>
+                            {/* {data.tradersData.map(trader=> (
+                                <div>
+                                    <p>This should be the Chart</p>
+                                    <Chart key={trader.id} tradersData={tradersData}/>
+                                </div>
+                            ))} */}
+                        </div>
+                    )
+                }}
+            </Query>
+        </div>
+    )     
 };
 
 export default Queries;

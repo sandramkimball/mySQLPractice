@@ -8,7 +8,7 @@ import Methodology from './components/Method.js';
 function App () {
   return (
       <div className="App">
-        <h1>GraphQL - MySQL - Apollo Test</h1>
+        <h2>GraphQL - MySQL - Apollo Test</h2>
         <Queries/>
         <Methodology/>
       </div>

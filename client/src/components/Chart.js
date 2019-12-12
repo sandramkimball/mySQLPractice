@@ -2,7 +2,7 @@ import React from "react";
 import {ResponsiveBar} from '@nivo/bar';
 import theme from '../Constants/Theme.js';
 
-function Chart(chartData) {
+function Chart(tradersData) {
     // {age, gender, education, crossing_frequency, primary_income}
     
     return(
@@ -10,7 +10,7 @@ function Chart(chartData) {
             <h5>Testing Chart.js</h5>
             <div>
                 <p>Trader: </p>
-                <p>{chartData.age}</p>
+                <p>{tradersData.age}</p>
             </div>
 
         <div className="Chart">           

@@ -1,8 +1,8 @@
 const db = require('../database/dbConfig');
 
 const getData = () => {
-    return db('platform_sessions as psess')
-    .leftJoin('information_demand as info', 'psess.cell_num', 'id.cell_num')
+    return db('platform_sessions as session')
+    .leftJoin('information_demand as info', 'session.cell_num', 'info.cell_num')
     .leftJoin('request_type as req', 'info.request_type_id', 'req.id')
     .limit(50)
 }
