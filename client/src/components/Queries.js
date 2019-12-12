@@ -1,32 +1,43 @@
 import React, {Fragnment} from 'react';
-//Fragments^^ groups list of child without adding extra nodes to DOM
+//Fragments groups list of child w/out adding extra nodes to DOM. same as useQuery?
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import {UserTile} from '../components';
+import {Traders} from './Traders';
 
 //wrapping in gql function to parse it into an AST
-const GET_USERS = gql`
-    query users($after: String){
-        users(after: $after){}
+const TRADERS_QUERY = gql`
+    query TRADERS_QUERY{
+        tradersUsers(age: '10-20'){
+            age
+            gender
+            education
+            crossing_frequency
+            primary_income
         }
+    }
 `;
 
-export default function Users(){
-    const {data, loading, error} = useQuery(GET_USERS);
-    if(loading) return <Loading/>;
-    if(error) return <p>Error</p>;
+class Queries extends React.Component(){
+    constructor(){
+        super();
+        this.state= {
+            traderData: []
+        }
+    };
 
-    return(
-        <Fragment>
-            <Header/>
-            {data.users &&
-            data.users.usrs &&
-            data.users.users.map(user=> (
-                <UserTile
-                    key={user.id}
-                    user={user}
-                />
-            ))}
-        </Fragment>
-    );
+
+    render(){
+        return(
+            <useQuery query={TRADERS_QUERY}>
+                {
+                    ({loading, error, data}) => {
+                        if(loading) return <h2>Loading...</h2>
+                        if(error) console.log(error)
+                        console.log(data)
+                        return <Traders data={data.tradersData}/>
+                    }
+                }
+            </useQuery>
+        )
+    }        
 };

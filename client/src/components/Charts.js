@@ -18,7 +18,7 @@ class Chart extends React.Component {
 
 
     componentDidMount(){
-        this.props.getDropDownDefault();
+        this.props.getDropDownDefault(this.props.pathname);
 
         axios
         .get(`${process.env.REACT_APP_BACKEND_URL}`)

@@ -28,11 +28,13 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <div className="App">
-      <h1>GraphQL - MySQL - Apollo App Test</h1>
-      <Chart/>
-      <Methodology/>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <h1>GraphQL - MySQL - Apollo App Test</h1>
+        <Chart/>
+        <Methodology/>
+      </div>
+    </ApolloProvider>
   );
 }
 
