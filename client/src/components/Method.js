@@ -1,14 +1,13 @@
 import React from "react";
-// import theme from '../../Constants/Theme.js';
 
 class Method extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className='methodology'>
             <div className="lineCont" >
                 <div className="lineOne">
-                    <h2 className="method-title" >Methodology Note</h2>
+                    <h2 className="method-title">Methodology Note</h2>
                 </div>
                 <div className="lineTwo" />
             </div>

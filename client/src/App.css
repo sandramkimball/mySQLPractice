@@ -6,7 +6,14 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.DataChart{
+  height: 60%;
+  border: 1px solid gray;
+}
+.methodology{
+  text-align: left;
+  padding: 10px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
