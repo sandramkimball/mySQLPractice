@@ -2,12 +2,18 @@ import React, {useState, useEffect} from "react";
 import {ResponsiveBar} from '@nivo/bar';
 import theme from '../Constants/Theme.js';
 
+const countGender = (arr) => {
+    let countMale = 0;
+    let countFemale = 0;
+    // arr.forEach(gender=> gender === 'Male' countMale.push ? countFemale.push)
+}
+
 function Chart({props}) {
     console.log('PROPS INCOMING!', props.data)
     const [genderNum, setGenderNum] = useState();
 
     useEffect(()=> {
-        console.log('Hey hey hey')
+        setGenderNum(countGender(props.data))
     }, [])
 
     return(

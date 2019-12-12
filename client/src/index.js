@@ -10,11 +10,18 @@ import gql from 'graphql-tag'
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
     query: gql`
-    query GetUser{
-      age
-      gender
-      education
-    }`
+        query User{
+            tradersUsers{
+                age
+                gender
+                education
+                crossing_frequency
+                primary_income
+                produce
+                country_of_residence
+                language
+            }
+        }`
 });
 
 ReactDOM.render(

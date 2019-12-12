@@ -4,10 +4,10 @@ import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag'; //used to create actual queries.
 import Chart from './Chart';
 
-//Wrap in gql function to parse into AST
+//Wrap in gql function to parse
 const TRADERS_QUERY = gql`
-    query Users{
-        tradersUsers{
+    query traderUsers($after: String){
+        User(after: $after){
             age
             gender
             education
@@ -15,6 +15,7 @@ const TRADERS_QUERY = gql`
             primary_income
             produce
             country_of_residence
+            language
         }
     }
 `;
@@ -24,16 +25,16 @@ function Queries(){
 
     if(loading) return <h2>Loading...</h2>
     if(error) console.log('YO QUERY DATA FAILED: ', error)
-    if(data) console.log('YO QUERY DATA TRUE!')
+    if(data) console.log('YO QUERY DATA TRUE!', data)
         
     return(
         <div>
             <p>Queries.js TradersUsers Mapping Below:</p>
-            {/* {data.tradersUsers.tradersUsers.map(trader=> (
+            {data.tradersUsers.tradersUsers.map(trader=> (
                 <div>
-                    <Chart key={trader.id} tradersUsers={tradersUsers} />
+                    <Chart key={trader.id} props={data.tradersUsers} />
                 </div>
-            ))} */}
+            ))}
         </div>
     )     
 };

@@ -11,9 +11,11 @@ const schema = buildSchema(`
             produce: String
             crossing_frequency: Int
             primary_income: Boolean
+            produce: String
+            country_of_residence: String
         ): [User]
     }
-    
+
     type SautiTrader {
         sess_id: Int
         cell_num: String
@@ -23,6 +25,7 @@ const schema = buildSchema(`
         request_value: String
         request_type: String
     }
+    
     type User {
         id: Int
         gender: String
