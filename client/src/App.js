@@ -4,7 +4,8 @@ import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo'
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpLink} from 'apollo-link-http';
-
+import Chart from './components/Charts';
+import Methodology from './components/Method.js';
 
 import gql from 'graphql-tag';
 client
@@ -29,6 +30,8 @@ function App() {
   return (
     <div className="App">
       <h1>GraphQL - MySQL - Apollo App Test</h1>
+      <Chart/>
+      <Methodology/>
     </div>
   );
 }
