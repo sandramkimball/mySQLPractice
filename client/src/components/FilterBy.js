@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import Chart from './Chart';
+// import {returnedItems} from './ParseData';
 
-function FilterBy(props) {
+function FilterBy(returnedItems) {
     const [chartData, setChartData] = useState([]);
+    // setChartData(returnedItems);
+    // console.log('ChartData in FilterBy:', chartData)
+
     const {firstOpt, setFirstOpt} = useState({});
     const {secondOpt, setSecondOpt} = useState({});
     const {thirdOpt, setThirdOpt} = useState({});
@@ -57,24 +61,27 @@ function FilterBy(props) {
         filterOptions.push(firstOpt, secondOpt, thirdOpt)
         setChartData(filterOptions)
     };
-     // <button onClick={(e)=> !variables.hasOwnProperty('age') ? setVariables({age: '20-30'}) : setVariables({})}>change age state</button>
+     // <button onClick={(e)=> !variables.hasOwnProperty('age') ? setVariables({age: '20-30'}) : setVariables({})}>set age state</button>
 
     return (
-        <div className='FilterBy'>
-            <form onSubmit={handleSubmit}>
-                <p>Select Up to Three Options</p>
-                {filterOptions.map(obj=> (
-                    <div>
-                    <input
-                        type='checkbox'
-                        name={obj}
-                        value={obj}
-                        key={obj}
-                        onClick={handleClick}
-                    /> <label>{obj}</label>
-                    </div>
-                ))}
-            </form>
+        <div className='chartAndFilter'>
+            {/* <Chart args={firstOpt} props={data/> */}
+            <div className='FilterBy'>
+                <form onSubmit={handleSubmit}>
+                    <p>Select Up to Three Options</p>
+                    {filterOptions.map(obj=> (
+                        <div>
+                        <input
+                            type='checkbox'
+                            name={obj}
+                            value={obj}
+                            key={obj}
+                            onClick={handleClick}
+                        /> <label>{obj}</label>
+                        </div>
+                    ))}
+                </form>
+            </div>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import {ResponsiveBar} from '@nivo/bar';
 import theme from '../Constants/Theme.js';
 
 function Chart({props}) {
+    console.log(props.chartData)
 
     const [femaleUsers, setFemaleUsers] = useState({
         gender: 'Female',
@@ -21,7 +22,7 @@ function Chart({props}) {
             <ResponsiveBar
                 data={props.data}
                 keys={'Male', 'Female'}
-                indexBy='id'
+                indexBy={props.firstOpt}
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}
                 groupMode="stacked"

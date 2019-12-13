@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {gql} from 'apollo-boost'; //used to create actual queries.
-import FilterBy from './FilterBy';
+import ParseData from './ParseData';
 
 //Wrap in gql function to parse
 const TRADERS_QUERY = gql`
@@ -31,7 +31,7 @@ function GetData(){
         
     return(
         <div>
-            <button onClick={(e)=> !variables.hasOwnProperty('age') ? setVariables({age: '20-30'}) : setVariables({})}>change age state</button>
+            <ParseData data={data.tradersUsers} />
             {data.tradersUsers.map(trader=> console.log(trader))}
             
         </div>

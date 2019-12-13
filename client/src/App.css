@@ -8,6 +8,7 @@
 }
 .DataChart{
   height: 60%;
+  width: 60%;
   border: 1px solid gray;
 }
 .methodology{
@@ -49,8 +50,12 @@
   max-width: 45%;
   margin: auto;
   text-align: left;
+  font-size: 12px;
 }
 .FilterBy form{
   display: flex;
   flex-direction: column;
+}
+.chartAndFilter{
+  display: flex;
 }
