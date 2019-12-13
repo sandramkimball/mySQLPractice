@@ -10,6 +10,11 @@ function FilterBy(returnedItems) {
     const {firstOpt, setFirstOpt} = useState({});
     const {secondOpt, setSecondOpt} = useState({});
     const {thirdOpt, setThirdOpt} = useState({});
+    const dropdownOptions = [
+        'Trader Demographics', 
+        'Trader Information Demand', 
+        'Trader Business Behavior' 
+    ]
     const filterOptions = [
         "Gender",
         "Education Level",
@@ -32,19 +37,18 @@ function FilterBy(returnedItems) {
         "Exchange Rate Direction"
     ];
 
-    // function checkboxlimit(checkgroup){
-    //     var checkgroup=checkgroup;
-    //     for (var i=0; i<checkgroup.length; i++){
-    //         checkgroup[i].onclick=function(){
-    //         var checkedcount=0
-    //         for (var i=0; i<checkgroup.length; i++)
-    //             checkedcount+=(checkgroup[i].checked)? 1 : 0
-    //         if (checkedcount>3){
-    //             this.checked=false
-    //             }
-    //         }
-    //     }
-    // }
+    function checkboxlimit(){
+        var checkgroup = document.forms['filter_form']['check[]'];
+        for (var i=0; i<checkgroup.length; i++){
+            checkgroup[i].onclick=function(){
+                var checkedcount = 0;
+                for (var i=0; i<checkgroup.length; i++){
+                    checkedcount+=(checkgroup[i].checked)? 1 : 0;
+                }
+            if (checkedcount > 3){this.checked = false}
+            }
+        }
+    }
 
     const handleClick = e => {
         if(firstOpt === null){
@@ -56,6 +60,12 @@ function FilterBy(returnedItems) {
         }
     };
 
+    const handleSelect = e => {
+        setFirstOpt(e.target.value);
+        const checkboxOpt = firstOpt.args;
+        return checkboxOpt
+    };
+
     const handleSubmit = e => {
         var filterOptions = [];
         filterOptions.push(firstOpt, secondOpt, thirdOpt)
@@ -65,23 +75,27 @@ function FilterBy(returnedItems) {
 
     return (
         <div className='chartAndFilter'>
-            {/* <Chart args={firstOpt} props={data/> */}
-            <div className='FilterBy'>
-                <form onSubmit={handleSubmit}>
-                    <p>Select Up to Three Options</p>
-                    {filterOptions.map(obj=> (
-                        <div>
-                        <input
-                            type='checkbox'
-                            name={obj}
-                            value={obj}
-                            key={obj}
-                            onClick={handleClick}
-                        /> <label>{obj}</label>
-                        </div>
+            {/* <Chart args={firstOpt} props={data}/> */}
+            <form className='FilterBy' name='filter_form' onSubmit={handleSubmit}>
+                <h4>IndexBy:</h4>
+                <select>
+                    {dropdownOptions.map(obj=> (
+                        <option value={obj} onSelect={handleSelect}>{obj}</option>
                     ))}
-                </form>
-            </div>
+                </select>
+                <p>Select Up to Two</p>
+                {filterOptions.map(obj=> (
+                    <div>
+                    <input
+                        type='checkbox'
+                        name='check[]'
+                        value={obj}
+                        key={obj}
+                        onClick={handleClick}
+                    /> <label>{obj}</label>
+                    </div>
+                ))}
+            </form>
         </div>
     )
 }
