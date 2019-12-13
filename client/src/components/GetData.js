@@ -2,7 +2,6 @@
 import React, {useState} from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {gql} from 'apollo-boost'; //used to create actual queries.
-import Chart from './Chart';
 import FilterBy from './FilterBy';
 
 //Wrap in gql function to parse
@@ -32,7 +31,6 @@ function GetData(){
         
     return(
         <div>
-            <Chart data={data.tradersUsers}/>
             <button onClick={(e)=> !variables.hasOwnProperty('age') ? setVariables({age: '20-30'}) : setVariables({})}>change age state</button>
             {data.tradersUsers.map(trader=> console.log(trader))}
             

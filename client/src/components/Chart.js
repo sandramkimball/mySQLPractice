@@ -2,19 +2,17 @@ import React, {useState, useEffect} from "react";
 import {ResponsiveBar} from '@nivo/bar';
 import theme from '../Constants/Theme.js';
 
-const countGender = (arr) => {
-    let countMale = 0;
-    let countFemale = 0;
-    // arr.forEach(gender=> gender === 'Male' countMale.push ? countFemale.push)
-}
-
 function Chart({props}) {
-    console.log('PROPS INCOMING!', props.data)
-    const [genderNum, setGenderNum] = useState();
 
-    useEffect(()=> {
-        setGenderNum(countGender(props.data))
-    }, [])
+    const [femaleUsers, setFemaleUsers] = useState({
+        gender: 'Female',
+        Female: 0,
+    });
+    const [maleUsers, setMaleUsers] = useState({
+        gender: 'Male',
+        Male: 0,
+    });
+
 
     return(
         <div className = 'DataChart'>
@@ -22,9 +20,7 @@ function Chart({props}) {
             <div className="Chart">        
             <ResponsiveBar
                 data={props.data}
-                keys={'age'
-                // 'gender','education', 'crossing_frequency', 'primary_income', 'produce', 'country_of_residence'
-                }
+                keys={'Male', 'Female'}
                 indexBy='id'
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}

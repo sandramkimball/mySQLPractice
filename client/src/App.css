@@ -43,3 +43,14 @@
     transform: rotate(360deg);
   }
 }
+
+.FilterBy{
+  border: .25px solid #cacaca;
+  max-width: 45%;
+  margin: auto;
+  text-align: left;
+}
+.FilterBy form{
+  display: flex;
+  flex-direction: column;
+}
