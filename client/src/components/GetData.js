@@ -1,13 +1,13 @@
 //Here we define the Queries that will fetch the specified data we want.
-import React, {useState} from 'react';
+import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {gql} from 'apollo-boost'; 
 // import ParseData from './ParseData';
-// import FilterBy from './FilterBy';
 
 const TRADERS_QUERY = gql`
-    query Users($after: String){
+    query getUsers($age: String){
         tradersUsers(age: $age){
+            id
             age
             gender
             education
@@ -19,19 +19,17 @@ const TRADERS_QUERY = gql`
 `;
 
 const GetData = () => {
-    const [variables, setVariables] = useState({});
+    // const [variables, setVariables] = useState({});
     const {loading, error, data} = useQuery(TRADERS_QUERY);
 
     if(loading) return <h2>Loading...</h2>
-    if(data) console.log('YO QUERY DATA TRUE!', data)
-    if(error) console.log('YO QUERY DATA FAILED!', error)
-
+    if(error) console.log('YO\' QUERY DATA FAILED!', error)
+    if(data) console.log('SOMEBODY GOT QUERY DATA!', data)
     // let chartData = ParseData('gender', data.tradersUsers)
-        
+
     return(
         <div>
-            {/* <FilterBy chartData={data}/>
-            {data.tradersUsers.map(trader=> console.log('Traders in GetData', trader))} */}
+            {/* <FilterBy chartData={data}/>*/}
         </div>
     )     
 };
