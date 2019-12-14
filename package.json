@@ -24,7 +24,8 @@
     "nodemon": "^2.0.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",

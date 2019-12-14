@@ -1,4 +1,5 @@
-const server = require('./server.js');
+const server = require('./server')
 
-const PORT = 7000
-server.listen(PORT, ()=> console.log(`Port ${PORT} is watching you...`))
+const port = process.env.PORT || 4000
+
+server.listen(port, console.log(`Port ${port} is Listening...`))
