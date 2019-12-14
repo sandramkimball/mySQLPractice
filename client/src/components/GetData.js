@@ -2,7 +2,7 @@
 import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {gql} from 'apollo-boost'; 
-// import ParseData from './ParseData';
+import ParseData from './ParseData';
 
 const TRADERS_QUERY = gql`
     query getUsers($age: String){
@@ -23,9 +23,10 @@ const GetData = () => {
     const {loading, error, data} = useQuery(TRADERS_QUERY);
 
     if(loading) return <h2>Loading...</h2>
-    if(error) console.log('YO\' QUERY DATA FAILED!', error)
-    if(data) console.log('SOMEBODY GOT QUERY DATA!', data)
-    // let chartData = ParseData('gender', data.tradersUsers)
+    if(error) console.log('YO\' SERVER GOT UH PROBLEM!', error)
+    // if(data) console.log('SOMEBODY GOT QUERY DATA!', data)
+    let chartData = ParseData('gender', data.tradersUsers)
+    console.log('chartData in GetData.js', chartData);
 
     return(
         <div>
