@@ -15,14 +15,12 @@ const root = {
 
 server.use(express.json())
 server.use(cors());
-
-//Express server with GraphQL Endpoint
+server.use('/api/data', dataRouter)
 server.use('/graphql', graphQLHTTP({
     schema,
     rootValue: root,
     graphiql: true
 }));
 
-server.use('/api/data', dataRouter)
 
 module.exports = server;
