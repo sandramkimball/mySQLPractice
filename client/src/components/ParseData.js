@@ -13,7 +13,11 @@ const ParseData = (arg, data, indexBy) => {
 
         case('language'):
             returnedItems.push(...setLanguage(data, indexBy, returnedItems))
+
+        case('country_of_residence'):
+            returnedItems.push(...setResidence(data, indexBy, returnedItems))
     }
+    
     return returnedItems;
 };   
 
@@ -69,15 +73,57 @@ const setEducation = data => {
 const setLanguage = data => {
     let English = {}
     English = {
-        education: 'English',
+        language: 'English',
         English: data.filter(trader=>trader.language==='English').length
     }
 
     let Swahili = {}
     Swahili = {
-        education: 'Swahili',
+        language: 'Swahili',
         Swahili: data.filter(trader=>trader.language==='Swahili').length
     }
+
+    let Luganda = {}
+    Luganda = { 
+        language: 'Luganda', 
+        Luganda: data.filter(trader=> trader.langauge === 'Luganda').length
+    }
+
+    let Kinyarawanda = {}
+    Kinyarawanda = { 
+        language: 'Kinyarawanda', 
+        Luganda: data.filter(trader=> trader.langauge === 'Kinyarawanda').length
+    }
+
+    let Lukiga = {}
+    Lukiga = { 
+        language: 'Lukiga', 
+        Luganda: data.filter(trader=> trader.langauge === 'Lukiga').length
+    }
+
+    return [English, Swahili, Luganda, Kinyarawanda, Lukiga];
+}
+
+const setResidence = data => {
+    let Kenya = {}
+    Kenya = {
+        country_of_residence: 'KEN',
+        Kenya: data.filter(trader=>trader.country_of_residence ==='KEN').length
+    }
+
+    let Uganda = {}
+    Uganda ={
+        country_of_residence: 'UGA',
+        Uganda: data.filter(trader=> trader.country_of_residence === 'UGA').length
+    }
+
+    let Rwanda = {}
+    Rwanda = {
+        country_of_residence: 'RWA',
+        Rwanda: data.filter(trader=> trader.country_of_residence === 'RWA').length
+    }
+
+    return [Kenya, Uganda, Rwanda]
 }
 
 
