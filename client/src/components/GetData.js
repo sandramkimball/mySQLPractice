@@ -19,7 +19,7 @@ const TRADERS_QUERY = gql`
 `;
 
 const GetData = () => {
-    const [variables, setVariables] = useState({});
+    // const [variables, setVariables] = useState({});
     const {loading, error, data} = useQuery(TRADERS_QUERY);
 
     if(loading) return <h2>Loading...</h2>

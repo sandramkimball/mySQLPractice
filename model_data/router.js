@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const db = require('./model')
+const knex = require('./model')
 
 //GET
 router.get('/', (req, res)=> {
-    db.getData()
+    knex.getData()
     .then(data=> {
         res.status(200).json(data)
     })
     .catch(err=> {
-        console.log('Error: ', err)
-        res.status(500).json({Error: 'Problem getting data.'});
+        console.log('Error in Router: ', err)
+        res.status(500).json({Error: 'Router.js has problem getting data.'});
     })
 });
 

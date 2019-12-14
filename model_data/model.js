@@ -1,22 +1,16 @@
-const db = require('../database/dbConfig');
+const db = require('../database/dbconfig')
 
-// const getData = () => {
-//     return db('platform_sessions as session')
-//     .leftJoin('information_demand as info', 'session.cell_num', 'info.cell_num')
-//     .leftJoin('users', 'session.cell_num', 'users.cell_num')
-//     .leftJoin('request_type as req', 'info.request_type_id', 'req.id')
-//     .limit(20)
-// }
-
-const getData =()=> {
-    return db('users')
-    .limit(20)
+const getData = () => {
+   return db('platform_sessions as ps')
+      .leftJoin('information_demand as id', 'ps.cell_num', 'id.cell_num')
+      .leftJoin('request_type as rt', 'id.request_type_id', 'rt.id')
+      .limit(45)
 }
 
 const getUsers = () => {
-    return db('users')
-    .limit(25)
+   return db('users')
+   .limit(45)
 }
 
 
-module.exports = {getData, getUsers};
+module.exports = { getData, getUsers }
