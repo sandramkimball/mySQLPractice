@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 // import Chart from './components/Chart';
-import Queries from './components/Queries.js';
+import GetData from './components/GetData.js';
+import FilterBy from './components/FilterBy';
 import Methodology from './components/Method.js';
 
 
@@ -9,7 +10,8 @@ function App () {
   return (
       <div className="App">
         <h2>GraphQL - MySQL - Apollo Test</h2>
-        <Queries/>
+        {/* <FilterBy/> */}
+        <GetData/>
         <Methodology/>
       </div>
   );

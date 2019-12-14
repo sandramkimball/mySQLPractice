@@ -1,35 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {ResponsiveBar} from '@nivo/bar';
-import theme from '../Constants/Theme.js';
 
-const countGender = (arr) => {
-    let countMale = 0;
-    let countFemale = 0;
-    // arr.forEach(gender=> gender === 'Male' countMale.push ? countFemale.push)
-}
-
-function Chart({props}) {
-    console.log('PROPS INCOMING!', props.data)
-    const [genderNum, setGenderNum] = useState();
-
-    useEffect(()=> {
-        setGenderNum(countGender(props.data))
-    }, [])
-
+const Chart = props => {
+    // console.log('props in Cart.js', props.chartData);
     return(
         <div className = 'DataChart'>
             <h5>Testing Chart.js</h5>
             <div className="Chart">        
             <ResponsiveBar
                 data={props.data}
-                keys={'age'
-                // 'gender','education', 'crossing_frequency', 'primary_income', 'produce', 'country_of_residence'
-                }
-                indexBy='id'
+                keys={props.keys}
+                indexBy={props.indexBy}
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}
                 groupMode="stacked"
-                // colors={{scheme: nivo}}
+                colors={{scheme: nivo}}
                 labelSkipHeight={0}
                 labelSkipWidth={0}
                 labelFormat={d => <tspan y={-15}>{d}% </tspan>}
