@@ -5,14 +5,13 @@ const schema = buildSchema(`
     type Query {
         tradersData(request_value: String): [SautiTrader]
         tradersUsers(
-            gender: String 
-            age: String
-            education: String
-            produce: String
-            crossing_frequency: Int
-            primary_income: Boolean
-            produce: String
-            country_of_residence: String
+            limit: Int,
+            gender: String ,
+            age: String,
+            education: String,
+            produce: String,
+            country_of_residence: String,
+            language: String,
         ): [User]
     }
 

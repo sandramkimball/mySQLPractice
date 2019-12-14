@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import Chart from './Chart';
-// import {returnedItems} from './ParseData';
+import React, {useState} from 'react';
+// import Chart from './Chart';
+// import GetData, {chartData} from './GetData';
 
-function FilterBy(returnedItems) {
-    const [chartData, setChartData] = useState([]);
-    // setChartData(returnedItems);
-    // console.log('ChartData in FilterBy:', chartData)
-
-    const {firstOpt, setFirstOpt} = useState({});
-    const {secondOpt, setSecondOpt} = useState({});
-    const {thirdOpt, setThirdOpt} = useState({});
+function FilterBy(chartData) {
+    console.log('chartData in FilterBy:', chartData)
+    const {dropdownOpt, setDropdown} = useState({});
+    const {filterOne, setFilterOne} = useState({});
+    const {filterTwo, setFilterTwo} = useState({});
     const dropdownOptions = [
         'Trader Demographics', 
         'Trader Information Demand', 
         'Trader Business Behavior' 
     ]
+    // const filterOptions = dropdownOpt.args;
     const filterOptions = [
         "Gender",
         "Education Level",
@@ -23,59 +21,37 @@ function FilterBy(returnedItems) {
         "Country of Residence",
         "Primary Income",
         "Language",
-        "Produce",
-        "Most Requested Commodities",
-        "Most Requested Commodity Categories",
-        "Requested Procedures for Destination",
-        "Most Requested Document Info for Procedures",
-        "Most Requested Agency Info for Procedures",
-        "Origin of Traders' Goods",
-        "Final Destination Country",
-        "Final Destination Market",
-        "Top Commodity",
-        "Top Commodity Categories",
-        "Exchange Rate Direction"
+        "Produce"
     ];
 
-    function checkboxlimit(){
-        var checkgroup = document.forms['filter_form']['check[]'];
-        for (var i=0; i<checkgroup.length; i++){
-            checkgroup[i].onclick=function(){
-                var checkedcount = 0;
-                for (var i=0; i<checkgroup.length; i++){
-                    checkedcount+=(checkgroup[i].checked)? 1 : 0;
-                }
-            if (checkedcount > 3){this.checked = false}
-            }
-        }
-    }
-
+    // checkboxes set chartData filter options
     const handleClick = e => {
-        if(firstOpt === null){
-            setFirstOpt(e.target.value)
-        } else if (secondOpt === null){
-            setSecondOpt(e.target.value)
-        } else if (thirdOpt === null){
-            setThirdOpt(e.target.value)
-        }
+        if(filterOne === null){
+            setFilterOne(e.target.value)
+        } else {setFilterTwo(e.target.value)} 
     };
 
+    // selects dropdown option
     const handleSelect = e => {
-        setFirstOpt(e.target.value);
-        const checkboxOpt = firstOpt.args;
-        return checkboxOpt
+        e.preventDefault();
+        setDropdown(e.target.value)
     };
 
+    // submit filter form
     const handleSubmit = e => {
-        var filterOptions = [];
-        filterOptions.push(firstOpt, secondOpt, thirdOpt)
-        setChartData(filterOptions)
+        var filteredData = [];
+        filteredData.push(filterOne, filterTwo)
+        return chartData.filter(item=> item.contain(filteredData))
     };
-     // <button onClick={(e)=> !variables.hasOwnProperty('age') ? setVariables({age: '20-30'}) : setVariables({})}>set age state</button>
-
+    
     return (
         <div className='chartAndFilter'>
-            {/* <Chart args={firstOpt} props={data}/> */}
+            {/* <Chart 
+                    keys={filterOptions}
+                    props={data}
+                    indexBy={indexBy}
+                    data={chartData}
+                /> */}
             <form className='FilterBy' name='filter_form' onSubmit={handleSubmit}>
                 <h4>IndexBy:</h4>
                 <select>

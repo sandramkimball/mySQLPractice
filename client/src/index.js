@@ -1,32 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ApolloClient from 'apollo-boost';
+import {ApolloProvider} from 'react-apollo';
 import './index.css';
 import App from './App';
-import {ApolloProvider} from 'react-apollo'
-import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag'
+import * as serviceWorker from './serviceWorker';
 
-
-const client = new ApolloClient({
-    uri: 'http://localhost:4000/',
-    query: gql`
-        query User{
-            tradersUsers{
-                age
-                gender
-                education
-                crossing_frequency
-                primary_income
-                produce
-                country_of_residence
-                language
-            }
-        }`
-});
+const client = new ApolloClient({ 
+    uri: "http://localhost:4400/graphql"
+  });  
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App/>
-    </ApolloProvider>, document.getElementById('root')
-);
+<ApolloProvider client={client}>
+    <App />
+</ApolloProvider>
+, document.getElementById('root'));
 
+serviceWorker.unregister();

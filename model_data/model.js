@@ -14,7 +14,8 @@ const getData =()=> {
 }
 
 const getUsers = () => {
-    return db('users').whereNotNull('args')
+    return db('users')
+    .limit(25)
 }
 
 

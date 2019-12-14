@@ -10,7 +10,8 @@ function App () {
   return (
       <div className="App">
         <h2>GraphQL - MySQL - Apollo Test</h2>
-        <FilterBy/>
+        {/* <FilterBy/> */}
+        <GetData/>
         <Methodology/>
       </div>
   );

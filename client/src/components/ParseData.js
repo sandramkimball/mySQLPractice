@@ -1,43 +1,39 @@
 
-
- const ParseData = (arg, data, indexBy) => {
+const ParseData = (arg, data, indexBy) => {
     let returnedItems = [];
     console.log('ReturnedItems in ParseData:', returnedItems)
+    const indices = getIndex(data, 'gender', returnedItems);
 
     switch(arg){
         case('gender'):
-            setGender(data);
-            returnedItems.push(...setGender(data))
+            returnedItems.push(...setGender(data, indexBy, returnedItems))
 
         case('education'):
-            setEducation(data)
-            returnedItems.push(...setEducation(data))
+            returnedItems.push(...setEducation(data, indexBy, returnedItems))
 
         case('language'):
-            setLanguage(data)
-            returnedItems.push(...setLanguage(data))
+            returnedItems.push(...setLanguage(data, indexBy, returnedItems))
     }
+    return returnedItems;
 };   
 
-// export {returnedItems};
-
-
-// const getIndex = (data, indexBy, array){
-//     const sets = new Set{...data.gender};
-//     return array;
-// }
+const getIndex = (data, indexBy, array) => {
+    const cleanedArr = data.map(item=> item = { [`${indexBy}`]: item[`${indexBy}`] })
+    const reducedArr = [...new Set(cleanedArr.map(JSON.stringify))].map(JSON.parse);
+    return reducedArr;
+}
 
 const setGender = data => {
     let femaleUsers = {};
     femaleUsers = {
         gender: 'Female',
-        Female: data.tradersUsers.filter(trader=>trader.gender==='Female').length
+        Female: data.filter(trader=>trader.gender==='Female').length
     }
 
     let maleUsers = {};
     maleUsers = {
         gender: 'Male',
-        Male: data.tradersUsers.filter(trader=>trader.gender==='Male').length
+        Male: data.filter(trader=>trader.gender==='Male').length
     }
     return [femaleUsers, maleUsers];
 }
@@ -46,25 +42,25 @@ const setEducation = data => {
     let PrimaryEd = {}
     PrimaryEd = {
         education: 'Primary',
-        Primary: data.tradersUsers.filter(trader=>trader.education==='Primary').length
+        Primary: data.filter(trader=>trader.education==='Primary').length
     }
 
     let SecondaryEd = {}
     SecondaryEd = {
         education: 'Secondary',
-        Primary: data.tradersUsers.filter(trader=>trader.education==='Secondary').length
+        Primary: data.filter(trader=>trader.education==='Secondary').length
     }
 
     let UniversityEd = {}
     UniversityEd = {
         education: 'University/College',
-        Primary: data.tradersUsers.filter(trader=>trader.education==='Primary').length
+        Primary: data.filter(trader=>trader.education==='Primary').length
     }
 
     let NoEd = {}
     NoEd = {
         education: 'NoEducation',
-        NoEducation: data.tradersUsers.filter(trader=>trader.education==='No formal education').length
+        NoEducation: data.filter(trader=>trader.education==='No formal education').length
     }
 
     return [PrimaryEd, SecondaryEd, UniversityEd, NoEd]
@@ -74,12 +70,15 @@ const setLanguage = data => {
     let English = {}
     English = {
         education: 'English',
-        English: data.tradersUsers.filter(trader=>trader.language==='English').length
+        English: data.filter(trader=>trader.language==='English').length
     }
 
     let Swahili = {}
     Swahili = {
         education: 'Swahili',
-        Swahili: data.tradersUsers.filter(trader=>trader.language==='Swahili').length
+        Swahili: data.filter(trader=>trader.language==='Swahili').length
     }
 }
+
+
+export default ParseData;
