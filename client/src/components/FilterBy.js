@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Chart from './Chart';
 
 function FilterBy(chartData) {
-    console.log('chartData in FilterBy:', chartData)
+    // console.log('chartData in FilterBy:', chartData)
     const {dropdownOpt, setDropdown} = useState({});
     let checkboxFilters = [];
     const dropdownOptions = [

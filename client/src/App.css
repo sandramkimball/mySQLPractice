@@ -39,7 +39,7 @@
 /* Filter SideBar */
 .FilterBy{
   border: .25px solid #cacaca;
-  max-width: 45%;
+  max-width: 300px;
   margin: auto;
   text-align: left;
   font-size: 12px;
@@ -52,12 +52,18 @@
 
 /* Chart */
 .DataChart{
-  height: 600px;
-  width: 800px;
+  height: 500px;
+  width: 80%;
   border: 1px solid gray;
+}
+.Chart{
+  height: 100%;
+  width: 90%;
 }
 .chartAndFilter{
   display: flex;
+  justify-content: center;
+  border: .5px solid gray;
 }
 
 /* Methodology */

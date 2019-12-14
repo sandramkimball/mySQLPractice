@@ -2,22 +2,20 @@ import React from "react";
 import {ResponsiveBar} from '@nivo/bar';
 
 const Chart = props => {
-    let dataArr = props.chartData.chartData;
+    let dataArr = props.props.chartData;
     console.log('props in Chart.js', dataArr);
 
     return(
-        <div className = 'DataChart'>
-            <h5>Testing Chart.js</h5>
-            <div className="Chart">        
+        <div className = 'DataChart'>      
             <ResponsiveBar
                 data={dataArr}
-                keys={[ 'Primary', 'Secondary', 'University/College', 'No formal education', 'null']}
-                indexBy="gender"
+                keys={[ 'English', 'Swahili', 'Luganda', 'Kinyarawanda', 'Lukiga']}
+                indexBy="language"
                 groupMode={"grouped"}
                 margin={{ top: 50, right: 130, bottom: 75, left: 80 }}
                 padding={0.3}
                 groupMode="stacked"
-                // colors={{scheme: nivo}}
+                colors={{scheme: 'nivo'}}
                 labelSkipHeight={0}
                 labelSkipWidth={0}
                 labelFormat={d => <tspan y={-15}>{d}% </tspan>}
@@ -43,7 +41,6 @@ const Chart = props => {
                     legendOffset: -70
                 }}
                 labelTextColor="black"
-                // theme={theme}
                 tooltip={({ id, value}) => (
                     <strong style={{color: "#000000", fontSize: "15px", fontFamily: "Helvetica"}}>
                         {id}: {value}%
@@ -74,8 +71,7 @@ const Chart = props => {
                 animate={true}
                 motionStiffness={90}
                 motionDamping={15}
-            />
-        </div>     
+            />   
     </div>
     )
 }
