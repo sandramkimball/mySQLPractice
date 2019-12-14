@@ -3,6 +3,7 @@ import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {gql} from 'apollo-boost'; 
 import ParseData from './ParseData';
+import FilterBy from './FilterBy';
 
 const TRADERS_QUERY = gql`
     query getUsers($age: String){
@@ -24,13 +25,12 @@ const GetData = () => {
 
     if(loading) return <h2>Loading...</h2>
     if(error) console.log('YO\' SERVER GOT UH PROBLEM!', error)
-    // if(data) console.log('SOMEBODY GOT QUERY DATA!', data)
+
     let chartData = ParseData('gender', data.tradersUsers)
-    console.log('chartData in GetData.js', chartData);
 
     return(
         <div>
-            {/* <FilterBy chartData={data}/>*/}
+            <FilterBy chartData={chartData}/>
         </div>
     )     
 };

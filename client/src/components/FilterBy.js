@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-// import Chart from './Chart';
-// import GetData, {chartData} from './GetData';
+import Chart from './Chart';
 
 function FilterBy(chartData) {
     console.log('chartData in FilterBy:', chartData)
     const {dropdownOpt, setDropdown} = useState({});
-    const {filterOne, setFilterOne} = useState({});
-    const {filterTwo, setFilterTwo} = useState({});
+    let checkboxFilters = [];
     const dropdownOptions = [
         'Trader Demographics', 
         'Trader Information Demand', 
@@ -16,19 +14,14 @@ function FilterBy(chartData) {
     const filterOptions = [
         "Gender",
         "Education Level",
-        "Border Crossing Frequency",
-        "Age",
         "Country of Residence",
-        "Primary Income",
         "Language",
-        "Produce"
     ];
 
     // checkboxes set chartData filter options
     const handleClick = e => {
-        if(filterOne === null){
-            setFilterOne(e.target.value)
-        } else {setFilterTwo(e.target.value)} 
+        checkboxFilters.push(e.target.value); 
+        console.log('Box checked', checkboxFilters)
     };
 
     // selects dropdown option
@@ -40,18 +33,13 @@ function FilterBy(chartData) {
     // submit filter form
     const handleSubmit = e => {
         var filteredData = [];
-        filteredData.push(filterOne, filterTwo)
+        filteredData.push(checkboxFilters)
         return chartData.filter(item=> item.contain(filteredData))
     };
     
     return (
         <div className='chartAndFilter'>
-            {/* <Chart 
-                    keys={filterOptions}
-                    props={data}
-                    indexBy={indexBy}
-                    data={chartData}
-                /> */}
+            <Chart props={chartData}/>
             <form className='FilterBy' name='filter_form' onSubmit={handleSubmit}>
                 <h4>IndexBy:</h4>
                 <select>
@@ -59,7 +47,7 @@ function FilterBy(chartData) {
                         <option value={obj} onSelect={handleSelect}>{obj}</option>
                     ))}
                 </select>
-                <p>Select Up to Two</p>
+                <p>Select Up to Two Filters</p>
                 {filterOptions.map(obj=> (
                     <div>
                     <input

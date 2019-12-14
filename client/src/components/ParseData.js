@@ -1,7 +1,7 @@
 
 const ParseData = (arg, data, indexBy) => {
     let returnedItems = [];
-    console.log('ReturnedItems in ParseData:', returnedItems)
+    // console.log('ReturnedItems in ParseData:', returnedItems)
     const indices = getIndex(data, 'gender', returnedItems);
 
     switch(arg){
@@ -17,7 +17,7 @@ const ParseData = (arg, data, indexBy) => {
         case('country_of_residence'):
             returnedItems.push(...setResidence(data, indexBy, returnedItems))
     }
-    
+
     return returnedItems;
 };   
 

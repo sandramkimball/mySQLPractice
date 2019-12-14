@@ -6,15 +6,8 @@
   height: 40vmin;
   pointer-events: none;
 }
-.DataChart{
-  height: 60%;
-  width: 60%;
-  border: 1px solid gray;
-}
-.methodology{
-  text-align: left;
-  padding: 10px;
-}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -32,10 +25,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -45,6 +34,9 @@
   }
 }
 
+
+
+/* Filter SideBar */
 .FilterBy{
   border: .25px solid #cacaca;
   max-width: 45%;
@@ -52,10 +44,24 @@
   text-align: left;
   font-size: 12px;
 }
+
 .FilterBy form{
   display: flex;
   flex-direction: column;
 }
+
+/* Chart */
+.DataChart{
+  height: 600px;
+  width: 800px;
+  border: 1px solid gray;
+}
 .chartAndFilter{
   display: flex;
+}
+
+/* Methodology */
+.methodology{
+  text-align: left;
+  padding: 10px;
 }
